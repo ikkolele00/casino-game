@@ -18,8 +18,8 @@ export interface Jackpot {
   providedIn: 'root',
 })
 export class GamesService {
-  private gamesUrl = 'http://stage.whgstage.com/front-end-test/games.php';
-  private jackpotsUrl = 'http://stage.whgstage.com/front-end-test/jackpots.php';
+  private gamesUrl = 'https://stage.whgstage.com/front-end-test/games.php';
+  private jackpotsUrl = 'https://stage.whgstage.com/front-end-test/jackpots.php';
 
   constructor(private http: HttpClient) {}
 
