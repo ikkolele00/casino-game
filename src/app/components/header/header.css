@@ -1,0 +1,49 @@
+.header {
+  background-color: #373737;
+  padding: 0px 20px;
+  font-family: "Arial", sans-serif;
+}
+
+.nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: space-evenly;
+  margin: 0;
+  padding: 0;
+  flex-wrap: wrap;
+}
+
+.nav li {
+  color: #ffffff;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 24px;
+  transition: color 0.3s ease;
+  padding: 15px 10px;
+}
+
+.nav li:hover {
+  color: #8dc63f;
+}
+
+.nav li.active {
+  color: #ffffff;
+  background-color: #8dc63f;
+}
+
+@media (max-width: 768px) {
+  .nav li {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav ul {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .nav li {
+    font-size: 12px;
+  }
+}

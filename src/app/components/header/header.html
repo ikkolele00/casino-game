@@ -1,0 +1,13 @@
+<header class="header">
+  <nav class="nav">
+    <ul>
+      <li
+        *ngFor="let category of categories"
+        [class.active]="category.id === activeCategory"
+        (click)="selectCategory(category.id)"
+      >
+        {{ category.label }}
+      </li>
+    </ul>
+  </nav>
+</header>
