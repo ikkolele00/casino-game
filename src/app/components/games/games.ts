@@ -13,6 +13,7 @@ import { CategoryService } from '../../services/category';
 export class GamesComponent implements OnInit {
   games: Game[] = [];
   filteredGames: Game[] = [];
+  currentCategory: string = 'top'; // default
 
   constructor(
     private gameService: GamesService,
@@ -20,12 +21,11 @@ export class GamesComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    // Load games from API
     this.gameService.getGames().subscribe(data => {
       this.games = data;
 
-      // Initial filter using default category ("top")
       this.categoryService.selectedCategory$.subscribe(category => {
+        this.currentCategory = category;
         this.filterGames(category);
       });
     });

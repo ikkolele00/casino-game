@@ -30,6 +30,32 @@
   max-width: 400px;
 }
 
+.top-badge {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  z-index: 10;
+  background-color: #F1A208;
+  color: #fcfcfc;
+  border-radius: 10px;
+}
+
+.new-badge {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  z-index: 10;
+  background-color: #8DC63F;
+  color: #fcfcfc;
+  border-radius: 10px;
+}
+
+.badge {
+  font-size: 0.85rem;
+  padding: 0.25em 0.5em;
+  font-weight: 800;
+}
+
 /* Tooltip */
 .game-card::after {
   content: attr(data-name);
@@ -55,4 +81,26 @@
 
 .game-card:hover::after {
   opacity: 1;
+}
+
+.play-banner {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  background-color: #8dc63f;
+  color: #fcfcfc;
+  font-weight: bold;
+  padding: 8px 0;
+  opacity: 0;
+  transform: translateY(100%);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+}
+
+.game-card:hover .play-banner {
+  opacity: 1;
+  transform: translateY(0);
 }

@@ -1,7 +1,23 @@
 <div class="games-grid">
-  <div class="game-card" 
-       *ngFor="let game of filteredGames"
-       [attr.data-name]="game.name">
+  <div
+    class="game-card"
+    *ngFor="let game of filteredGames"
+    [attr.data-name]="game.name"
+  >
     <img [src]="'https:' + game.image" [alt]="game.name" />
+
+    <span
+      *ngIf="game.categories.includes('top') && currentCategory !== 'top'"
+      class="badge bg-primary top-badge"
+      >TOP</span
+    >
+
+    <span
+      *ngIf="game.categories.includes('new') && currentCategory !== 'new'"
+      class="badge new-badge"
+      >NEW</span
+    >
+
+    <div class="play-banner">PLAY</div>
   </div>
 </div>
