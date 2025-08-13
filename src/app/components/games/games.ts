@@ -1,7 +1,10 @@
+import { Jackpot } from './../../services/games';
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Game, GamesService } from '../../services/games';
 import { CategoryService } from '../../services/category';
+import { interval } from 'rxjs';
+import { startWith, switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-games',
@@ -14,25 +17,42 @@ export class GamesComponent implements OnInit {
   games: Game[] = [];
   filteredGames: Game[] = [];
   currentCategory: string = 'top'; // default
+  jackpots: { game: string; amount: number }[] = [];
+  jackpotsMap: Record<string, number> = {};
 
   constructor(
+    private cd: ChangeDetectorRef,
     private gameService: GamesService,
     private categoryService: CategoryService
   ) {}
 
   ngOnInit() {
-    this.gameService.getGames().subscribe(data => {
-      this.games = data;
+    // load games
+    this.gameService.getGames().subscribe(games => {
+      this.games = games;
 
+      // watch category changes
       this.categoryService.selectedCategory$.subscribe(category => {
         this.currentCategory = category;
-        this.filterGames(category);
+        this.filterGames();
       });
+
+      // start jackpot polling after games are loaded
+      interval(5000)
+        .pipe(
+          startWith(0), // fetch immediately
+          switchMap(() => this.gameService.getJackpots())
+        )
+        .subscribe((jackpots: Jackpot[]) => {
+          this.jackpotsMap = {};
+          jackpots.forEach(j => (this.jackpotsMap[j.game] = j.amount));
+          this.cd.detectChanges();
+        });
     });
   }
 
-  filterGames(category: string) {
-    if (category === 'other') {
+  filterGames() {
+    if (this.currentCategory === 'other') {
       this.filteredGames = this.games.filter(game =>
         game.categories.some(cat =>
           ['other', 'ball', 'virtual', 'fun'].includes(cat)
@@ -40,7 +60,7 @@ export class GamesComponent implements OnInit {
       );
     } else {
       this.filteredGames = this.games.filter(game =>
-        game.categories.includes(category)
+        game.categories.includes(this.currentCategory)
       );
     }
   }

@@ -9,6 +9,11 @@ export interface Game {
   id: string;
 }
 
+export interface Jackpot {
+  game: string;
+  amount: number;
+}
+
 @Injectable({
   providedIn: 'root',
 })
