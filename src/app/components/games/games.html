@@ -1,6 +1,7 @@
 <div class="games-grid">
-  <div class="game-card" *ngFor="let game of filteredGames">
+  <div class="game-card" 
+       *ngFor="let game of filteredGames"
+       [attr.data-name]="game.name">
     <img [src]="'https:' + game.image" [alt]="game.name" />
-    <h3>{{ game.name }}</h3>
   </div>
 </div>
