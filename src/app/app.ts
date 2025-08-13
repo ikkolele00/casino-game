@@ -1,9 +1,11 @@
+import { CommonModule } from '@angular/common';
+import { GamesComponent } from './components/games/games';
 import { HeaderComponent } from './components/header/header';
 import { Component, signal } from '@angular/core';
 
 @Component({
   selector: 'app-root',
-  imports: [HeaderComponent],
+  imports: [HeaderComponent, GamesComponent, CommonModule],
   templateUrl: './app.html',
   styleUrl: './app.css',
 })

@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Output } from '@angular/core';
+import { CategoryService } from '../../services/category';
 
 @Component({
   selector: 'app-header',
@@ -9,7 +10,8 @@ import { Component, EventEmitter, Output } from '@angular/core';
   styleUrls: ['./header.css'],
 })
 export class HeaderComponent {
-  constructor() {}
+
+  constructor(private categoryService: CategoryService) {}
 
   categories = [
     { id: 'top', label: 'Top Games' },
@@ -27,6 +29,7 @@ export class HeaderComponent {
   activeCategory = 'top';
 
   selectCategory(categoryId: string) {
-    // TODO: set active category header click
+    this.activeCategory = categoryId;
+    this.categoryService.setCategory(categoryId);
   }
 }
