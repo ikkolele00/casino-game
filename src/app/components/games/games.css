@@ -1,13 +1,14 @@
 .games-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 40px 20px;
+  justify-content: center;
   padding: 25px 10%;
 }
 
-@media (min-width: 800px) {
+@media (min-width: 1280px) {
   .games-grid {
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(5, minmax(200px, 1fr));
   }
 }
 
