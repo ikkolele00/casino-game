@@ -27,6 +27,6 @@ export class HeaderComponent {
   activeCategory = 'top';
 
   selectCategory(categoryId: string) {
-    // TODO
+    // TODO: set active category header click
   }
 }
